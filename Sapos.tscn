@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://crnvib05yd3xw"]
+
+[ext_resource type="Script" uid="uid://dc0lu0n87g8xw" path="res://character_body_2d.gd" id="1_2adlf"]
+[ext_resource type="Texture2D" uid="uid://hhnnd1wb6e7j" path="res://sprites/animacoes sapo.png" id="2_u7m8s"]
+[ext_resource type="Texture2D" uid="uid://02mwartrjvhx" path="res://sprites/chao de grama.png" id="3_u7m8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsx7d"]
+size = Vector2(60, 128.375)
+
+[sub_resource type="Animation" id="Animation_fsx7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(5, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_u7m8s"]
+resource_name = "attack"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_tmw4y"]
+resource_name = "crouch"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dbhhf"]
+resource_name = "fall"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(6, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6omju"]
+resource_name = "idle"
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_74631"]
+resource_name = "jump"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.47846013, 0.85306233),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 1), Vector2i(6, 1), Vector2i(5, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y20k5"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 5, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d1nn0"]
+_data = {
+&"RESET": SubResource("Animation_fsx7d"),
+&"attack": SubResource("Animation_u7m8s"),
+&"crouch": SubResource("Animation_tmw4y"),
+&"fall": SubResource("Animation_dbhhf"),
+&"idle": SubResource("Animation_6omju"),
+&"jump": SubResource("Animation_74631"),
+&"move": SubResource("Animation_y20k5")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2adlf"]
+resource_name = "chao"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2adlf"]
+size = Vector2(695, 62)
+
+[node name="Node2D" type="Node2D" unique_id=1324666672]
+
+[node name="player" type="CharacterBody2D" parent="." unique_id=1783662775]
+script = ExtResource("1_2adlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" unique_id=654319664]
+visible = false
+position = Vector2(81, 528.1875)
+shape = SubResource("RectangleShape2D_fsx7d")
+
+[node name="Sprite2D" type="Sprite2D" parent="player" unique_id=435295804]
+position = Vector2(80, 530)
+texture = ExtResource("2_u7m8s")
+hframes = 9
+vframes = 4
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player" unique_id=510011065]
+libraries/ = SubResource("AnimationLibrary_d1nn0")
+
+[node name="Camera2D" type="Camera2D" parent="player" unique_id=1463369268]
+position = Vector2(111, 457)
+
+[node name="Chao" type="StaticBody2D" parent="." unique_id=1253217343]
+material = SubResource("CanvasItemMaterial_2adlf")
+position = Vector2(-1330, 146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao" unique_id=1509394987]
+position = Vector2(1662, 481)
+shape = SubResource("RectangleShape2D_2adlf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chao" unique_id=279289799]
+position = Vector2(1657.7501, 479)
+scale = Vector2(7.203128, 0.5833333)
+texture = ExtResource("3_u7m8s")

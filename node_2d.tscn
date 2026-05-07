@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://csgrwenttihmh"]
+
+[ext_resource type="Script" uid="uid://dc0lu0n87g8xw" path="res://character_body_2d.gd" id="1_epypp"]
+[ext_resource type="Texture2D" uid="uid://djvw33cvoxij5" path="res://sprites/sapo.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://02mwartrjvhx" path="res://sprites/chao de grama.png" id="3_q6r6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsx7d"]
+size = Vector2(58.5, 132)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2adlf"]
+resource_name = "chao"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2adlf"]
+size = Vector2(1206, 504.5)
+
+[node name="Node2D" type="Node2D" unique_id=1324666672]
+
+[node name="Jogador" type="CharacterBody2D" parent="." unique_id=1783662775]
+script = ExtResource("1_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Jogador" unique_id=1243178586]
+position = Vector2(133, 449.00003)
+scale = Vector2(0.2278646, 0.28564456)
+texture = ExtResource("2_0hol4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jogador" unique_id=654319664]
+position = Vector2(132, 458)
+shape = SubResource("RectangleShape2D_fsx7d")
+
+[node name="Chao" type="StaticBody2D" parent="." unique_id=1253217343]
+material = SubResource("CanvasItemMaterial_2adlf")
+position = Vector2(-1330, 146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao" unique_id=1509394987]
+position = Vector2(1917, 702.25)
+shape = SubResource("RectangleShape2D_2adlf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=279289799]
+position = Vector2(584.5, 851.5)
+scale = Vector2(12.385417, 5.2812505)
+texture = ExtResource("3_q6r6c")
